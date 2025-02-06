@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import matplotlib.pyplot as plt
+
 def main():
     print("Start...")
 
@@ -55,9 +57,23 @@ def average_time(data):
         print("No lap times found.")
         return None
 
+def graph_laptime(data):
+    laps = []
+    laptimes = []
+    for line in data:
+        columns = line.strip().split(',')
+        if len(columns) > 1:
+            laps.append(columns[0])
+            laptimes.append(convert_to_seconds(columns[1]))
+    plt.bar(laps, laptimes)
+    plt.xlabel('Lap')
+    plt.ylabel('Lap Time (seconds)')
+    plt.show()
+
 if __name__ == "__main__":
     main()
     data = read_files()
     get_laptime(data)
     get_lap(data)
     average_time(data)
+    graph_laptime(data)
