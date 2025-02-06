@@ -5,6 +5,13 @@ import matplotlib.pyplot as plt
 def main():
     print("Start...")
 
+def get_csv_files():
+    number_files = int(input("Enter the number of pilotes to compare: "))
+    print(number_files)
+    for i in range(number_files):
+        filename = input(f"Enter the name of the file {i+1}: ")
+        print(filename)
+
 def read_files():
     with open('data/data_lec.csv', 'r') as file:
         next(file) # Skip the first line
@@ -72,6 +79,7 @@ def graph_laptime(data):
 
 if __name__ == "__main__":
     main()
+    get_csv_files()
     data = read_files()
     get_laptime(data)
     get_lap(data)
